@@ -111,7 +111,7 @@ class App extends Component {
     }
 
     return (
-      <WithCLass classes={classes.App}>
+      <WithCLass className={classes.App}>
         <button
           onClick={() => {
             this.setState({ showCockpit: false });

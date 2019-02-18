@@ -111,7 +111,7 @@ class App extends Component {
     }
 
     return (
-      <WithCLass classes={classes.App}>
+      <div className={classes.App}>
         <button
           onClick={() => {
             this.setState({ showCockpit: false });
@@ -135,7 +135,7 @@ class App extends Component {
         <p>{this.state.userInput}</p>
         <Validation inputLength={this.state.userInput.length} />
         {charList}
-      </WithCLass>
+      </div>
     );
   }
 }

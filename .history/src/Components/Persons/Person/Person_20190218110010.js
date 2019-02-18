@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import Auxiliary from '../../../HOC/Auxiliary';
 import classes from './Person.css';
@@ -10,7 +10,7 @@ class Person extends Component {
   render() {
     console.log('[Person.js] rendering...');
     return (
-      <Auxiliary>
+      <Auxiliary classes={classes.Person}>
         <p onClick={this.props.click}>
           i'm {this.props.name} and i am {this.props.age}!
         </p>
