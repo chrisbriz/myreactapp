@@ -18,9 +18,9 @@ class App extends Component {
   //state = component internal data, data source
   state = {
     persons: [
-      { id: '1', name: 'Anna', age: 32 },
-      { id: '2', name: 'Nova', age: 1 },
-      { id: '3', name: 'Chris', age: 33 }
+      { id: '1', name: 'Anna', age: '32' },
+      { id: '2', name: 'Nova', age: '1' },
+      { id: '3', name: 'Chris', age: '33' }
     ],
     showPersons: false,
     userInput: '',

@@ -18,14 +18,14 @@ class App extends Component {
   //state = component internal data, data source
   state = {
     persons: [
-      { id: '1', name: 'Anna', age: 32 },
-      { id: '2', name: 'Nova', age: 1 },
-      { id: '3', name: 'Chris', age: 33 }
+      { id: '1', name: 'Anna', age: '32' },
+      { id: '2', name: 'Nova', age: '1' },
+      { id: '3', name: 'Chris', age: '33' }
     ],
     showPersons: false,
     userInput: '',
     showCockpit: true,
-    changeCounter: 0
+    changeCounter = 0
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -74,12 +74,7 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState((prevState, props) => {
-      return {
-        persons: persons,
-        changeCounter: prevState.changeCounter + 1
-      };
-    });
+    this.setState({ persons: persons })
   }
 
   deletePersonHandler = (personIndex) => {

@@ -18,9 +18,9 @@ class App extends Component {
   //state = component internal data, data source
   state = {
     persons: [
-      { id: '1', name: 'Anna', age: 32 },
-      { id: '2', name: 'Nova', age: 1 },
-      { id: '3', name: 'Chris', age: 33 }
+      { id: '1', name: 'Anna', age: '32' },
+      { id: '2', name: 'Nova', age: '1' },
+      { id: '3', name: 'Chris', age: '33' }
     ],
     showPersons: false,
     userInput: '',
@@ -78,73 +78,73 @@ class App extends Component {
       return {
         persons: persons,
         changeCounter: prevState.changeCounter + 1
-      };
-    });
+      })
+  }
+}
+
+deletePersonHandler = (personIndex) => {
+  // const persons = this.state.persons.slice();
+  /*spread operator = spreads le element of the initial array into a new array
+  we now manipulate a copy of the original state (mutating the state directly is bad practice)
+  then updating the state*/
+  const persons = [...this.state.persons];
+  persons.splice(personIndex, 1);
+  this.setState({ persons: persons });
+}
+
+togglePersonsHandler = () => {
+  const doesShow = this.state.showPersons;
+  this.setState({ showPersons: !doesShow });
+}
+
+render() {
+  console.log('[App.js] render')
+
+  const charList = this.state.userInput.split('').map((ch, index) => {
+    return <Char
+      character={ch}
+      key={index}
+      clicked={() => this.deleteCharHandler(index)} />;
+  });
+
+  let persons = null;
+
+  if (this.state.showPersons) {
+    persons =
+      <Persons
+        persons={this.state.persons}
+        clicked={this.deletePersonHandler}
+        changed={this.nameChangedHandler} />
   }
 
-  deletePersonHandler = (personIndex) => {
-    // const persons = this.state.persons.slice();
-    /*spread operator = spreads le element of the initial array into a new array
-    we now manipulate a copy of the original state (mutating the state directly is bad practice)
-    then updating the state*/
-    const persons = [...this.state.persons];
-    persons.splice(personIndex, 1);
-    this.setState({ persons: persons });
-  }
-
-  togglePersonsHandler = () => {
-    const doesShow = this.state.showPersons;
-    this.setState({ showPersons: !doesShow });
-  }
-
-  render() {
-    console.log('[App.js] render')
-
-    const charList = this.state.userInput.split('').map((ch, index) => {
-      return <Char
-        character={ch}
-        key={index}
-        clicked={() => this.deleteCharHandler(index)} />;
-    });
-
-    let persons = null;
-
-    if (this.state.showPersons) {
-      persons =
-        <Persons
-          persons={this.state.persons}
-          clicked={this.deletePersonHandler}
-          changed={this.nameChangedHandler} />
-    }
-
-    return (
-      <Auxiliary>
-        <button
-          onClick={() => {
-            this.setState({ showCockpit: false });
-          }}>
-          Remove Cockpit
+  return (
+    <Auxiliary>
+      <button
+        onClick={() => {
+          this.setState({ showCockpit: false });
+        }}>
+        Remove Cockpit
         </button>
-        {this.state.showCockpit ? (
-          <Cockpit
-            title={this.props.appTitle}
-            showPersons={this.state.showPersons}
-            personsLength={this.state.persons.length}
-            clicked={this.togglePersonsHandler}
-          />
-        ) : null}
-        {persons}
-        <hr />
-        <input
-          type="text"
-          onChange={this.inputChangeHandler}
-          value={this.state.userInput} />
-        <p>{this.state.userInput}</p>
-        <Validation inputLength={this.state.userInput.length} />
-        {charList}
-      </Auxiliary>
-    );
-  }
+      {this.state.showCockpit ? (
+        <Cockpit
+          title={this.props.appTitle}
+          showPersons={this.state.showPersons}
+          personsLength={this.state.persons.length}
+          clicked={this.togglePersonsHandler}
+        />
+      ) : null}
+      {persons}
+      <hr />
+      <input
+        type="text"
+        onChange={this.inputChangeHandler}
+        value={this.state.userInput} />
+      <p>{this.state.userInput}</p>
+      <Validation inputLength={this.state.userInput.length} />
+      {charList}
+    </Auxiliary>
+  );
+}
 }
 
 export default withCLass(App, classes.App);
