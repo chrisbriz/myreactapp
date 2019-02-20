@@ -9,29 +9,25 @@ import classes from './Person.css';
 
 //props = properties on the element in app.js
 class Person extends Component {
-constructor(props){
-  super(props);
-  this.inputElementRef = React.createRef();
+constructor(){
+  this.inputElement = React.createRef();
 }
 
 componentDidMount(){
-  // this.inputElement.focus();
-  this.inputElementRef.current.focus();
+  this.inputElement.focus();
 }
 
   render() {
     console.log('[Person.js] rendering...');
     return (
       <Auxiliary>
-        {this.props.isAuth ? <p>Authenticated</p> : <p>Please log in</p>}
         <p onClick={this.props.click}>
           i'm {this.props.name} and i am {this.props.age}!
         </p>
         <p key="i2">{this.props.children}</p>
         <input
           key="i3"
-          // ref={(inputEl) => {this.inputElement = inputEl}}
-          ref={this.inputElementRef}
+          ref={(inputEl) => {this.inputElement = inputEl}}
           type="text"
           onChange={this.props.changed}
           value={this.props.name}

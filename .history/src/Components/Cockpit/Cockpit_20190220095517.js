@@ -3,14 +3,14 @@ import classes from './Cockpit.css';
 
 const cockpit = (props) => {
     const toggleBtnRef = useRef(null);
+    toggleBtnRef.current.click();
 
     useEffect(() => {
         console.log('[Cockpit.js] useEffect');
         //HTTP request...
-        // setTimeout(() => {
-        //     alert('Saved data to the cloud');
-        // }, 1000);
-        toggleBtnRef.current.click();
+        setTimeout(() => {
+            alert('Saved data to the cloud');
+        }, 1000);
         return () => {
             console.log('[Cockpit.js] clean up work in useEffect');
         };
@@ -35,13 +35,7 @@ const cockpit = (props) => {
             <button
                 ref={toggleBtnRef}
                 className={btnClass}
-                onClick={props.clicked}>
-                Toggle Persons
-                </button>
-            <button
-                onClick={props.login}>
-                Log in
-                </button>
+                onClick={props.clicked}>Toggle Persons</button>
         </div>
     );
 

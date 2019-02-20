@@ -23,7 +23,6 @@ componentDidMount(){
     console.log('[Person.js] rendering...');
     return (
       <Auxiliary>
-        {this.props.isAuth ? <p>Authenticated</p> : <p>Please log in</p>}
         <p onClick={this.props.click}>
           i'm {this.props.name} and i am {this.props.age}!
         </p>

@@ -100,7 +100,7 @@ class App extends Component {
   }
 
   loginHandler = () => {
-    this.setState({ authenticated: true });
+    this.setState({authenticated: true});
   }
 
   render() {
@@ -132,22 +132,17 @@ class App extends Component {
           }}>
           Remove Cockpit
         </button>
-        <AuthContext.Provider
-          value={{
-            authenticated: this.state.authenticated,
-            login: this.loginHandler
-          }}
-        >
-          {this.state.showCockpit ? (
-            <Cockpit
-              title={this.props.appTitle}
-              showPersons={this.state.showPersons}
-              personsLength={this.state.persons.length}
-              clicked={this.togglePersonsHandler}
-              login={this.loginHandler}
-            />
-          ) : null}
-          {persons}
+        <AuthContext.Provider>
+        {this.state.showCockpit ? (
+          <Cockpit
+            title={this.props.appTitle}
+            showPersons={this.state.showPersons}
+            personsLength={this.state.persons.length}
+            clicked={this.togglePersonsHandler}
+            login={this.loginHandler}
+          />
+        ) : null}
+        {persons}
         </AuthContext.Provider>
         <hr />
         <input

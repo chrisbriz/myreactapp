@@ -6,7 +6,6 @@ import Persons from '../Components/Persons/Persons';
 import Cockpit from '../Components/Cockpit/Cockpit';
 import withCLass from '../HOC/withClass';
 import Auxiliary from '../HOC/Auxiliary';
-import AuthContext from '../context/auth-context';
 
 
 class App extends Component {
@@ -27,7 +26,7 @@ class App extends Component {
     userInput: '',
     showCockpit: true,
     changeCounter: 0,
-    authenticated: false
+    authenticated_ false
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -100,7 +99,7 @@ class App extends Component {
   }
 
   loginHandler = () => {
-    this.setState({ authenticated: true });
+
   }
 
   render() {
@@ -120,8 +119,7 @@ class App extends Component {
         <Persons
           persons={this.state.persons}
           clicked={this.deletePersonHandler}
-          changed={this.nameChangedHandler}
-          isAuthenticated={this.state.authenticated} />
+          changed={this.nameChangedHandler} />
     }
 
     return (
@@ -132,23 +130,16 @@ class App extends Component {
           }}>
           Remove Cockpit
         </button>
-        <AuthContext.Provider
-          value={{
-            authenticated: this.state.authenticated,
-            login: this.loginHandler
-          }}
-        >
-          {this.state.showCockpit ? (
-            <Cockpit
-              title={this.props.appTitle}
-              showPersons={this.state.showPersons}
-              personsLength={this.state.persons.length}
-              clicked={this.togglePersonsHandler}
-              login={this.loginHandler}
-            />
-          ) : null}
-          {persons}
-        </AuthContext.Provider>
+        {this.state.showCockpit ? (
+          <Cockpit
+            title={this.props.appTitle}
+            showPersons={this.state.showPersons}
+            personsLength={this.state.persons.length}
+            clicked={this.togglePersonsHandler}
+            login={}
+          />
+        ) : null}
+        {persons}
         <hr />
         <input
           type="text"

@@ -7,10 +7,9 @@ const cockpit = (props) => {
     useEffect(() => {
         console.log('[Cockpit.js] useEffect');
         //HTTP request...
-        // setTimeout(() => {
-        //     alert('Saved data to the cloud');
-        // }, 1000);
-        toggleBtnRef.current.click();
+        setTimeout(() => {
+            alert('Saved data to the cloud');
+        }, 1000);
         return () => {
             console.log('[Cockpit.js] clean up work in useEffect');
         };
@@ -33,15 +32,9 @@ const cockpit = (props) => {
             <h1>{props.title}</h1>
             <p className={assignedClasses.join(' ')}>My react project</p>
             <button
-                ref={toggleBtnRef}
+            ref={toggleBtnRef}
                 className={btnClass}
-                onClick={props.clicked}>
-                Toggle Persons
-                </button>
-            <button
-                onClick={props.login}>
-                Log in
-                </button>
+                onClick={props.clicked}>Toggle Persons</button>
         </div>
     );
 
