@@ -6,7 +6,6 @@ import withClass from '../../../HOC/withClass';
 import classes from './Person.css';
 import AuthContext from '../../../context/auth-context';
 
-
 //props = properties on the element in app.js
 class Person extends Component {
   constructor(props) {
